@@ -1,3 +1,4 @@
+import os
 import streamlit as st 
 import pandas as pd 
 import plotly.express as px 
@@ -5,13 +6,14 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split 
 from sklearn.metrics import classification_report 
 
-@st.cache_data 
-def load_data(): 
-    df = pd.read_csv(r"C:/Users/Chabri Ganesh/industrial_fault_detection_data_1000.csv") 
-    df["Timestamp"] = pd.to_datetime(df["Timestamp"]) 
-    return df 
-
-df = load_data() 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FILE_PATH = os.path.join(BASE_DIR, "industrial_fault_detection_data_1000.csv")
+@st.cache_data
+def load_data():
+    df = pd.read_csv(FILE_PATH)
+    df["Timestamp"] = pd.to_datetime(df["Timestamp"])
+    return df
+df = load_data()
 df.columns = df.columns.str.strip().str.replace("Â", "", regex=False) 
 
 st.title("🏭 Manufacturing IoT - Intelligent Automation Dashboard") 
