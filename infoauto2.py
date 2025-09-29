@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px 
 @st.cache_data 
 def load_data(): 
-    df = pd.read_excel(r'C:/Users/Chabri Ganesh/sales_data.xlsx')
+    df = pd.read_excel('sales_data.xlsx')
     df["Total"] = df["Quantity"] * df["Price"] 
     return df 
 df = load_data() 
